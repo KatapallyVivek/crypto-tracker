@@ -24,6 +24,7 @@ This project focuses on clean UI, performance, and practical frontend architectu
 ---
 
 ## 📂 Project Structure
+```md
 src/
 ├── components/
 │ └── CoinCard.jsx
@@ -36,9 +37,8 @@ src/
 │ └── api.js
 ├── App.jsx
 └── main.jsx
-
+```
 ---
-
 📌 Use Case
 This project is intended for:
 - 💻 Practicing React fundamentals  
@@ -46,14 +46,22 @@ This project is intended for:
 - 🏗️ Building real-world frontend projects  
 - 📈 Strengthening GitHub portfolio
 
-Future Enhancements
+🚀Future Enhancements
 - ⭐ Favorites / Watchlist: Save coins you want to track regularly.
 - 📊 Interactive Price Charts: View historical price trends with charts.  
 - 🌐 Multi-Currency Support: View prices in different fiat currencies (USD, INR, EUR).
 - 📱 Mobile Responsive Improvements: Smooth experience on all screen sizes.
 - 📝 Better Error Handling: User-friendly messages for API errors or network issues.
 
-🚧 Project Status
+## ⚙️ Installation & Setup Clone the repository:
+```bash
+git clone https://github.com/KatapallyVivek/crypto-tracker.git
+cd crypto-tracker
+npm install
+npm run dev
+```
+
+## 🚧 Project Status
 This project is **ongoing** and not fully completed yet.  
 New features and improvements will be added over time.
 
