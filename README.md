@@ -39,14 +39,14 @@ src/
 └── main.jsx
 ```
 ---
-📌 Use Case
+## 📌 Use Case
 This project is intended for:
 - 💻 Practicing React fundamentals  
 - 🌐 Learning API integration  
 - 🏗️ Building real-world frontend projects  
 - 📈 Strengthening GitHub portfolio
 
-🚀Future Enhancements
+## 🚀Future Enhancements
 - ⭐ Favorites / Watchlist: Save coins you want to track regularly.
 - 📊 Interactive Price Charts: View historical price trends with charts.  
 - 🌐 Multi-Currency Support: View prices in different fiat currencies (USD, INR, EUR).
