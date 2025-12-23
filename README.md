@@ -1,16 +1,60 @@
-# React + Vite
+🚀 Crypto Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern cryptocurrency tracking web application built with React that allows users to view real-time crypto prices and detailed coin information.
 
-Currently, two official plugins are available:
+This project focuses on clean UI, performance, and practical frontend architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
+- 📈 Real-time cryptocurrency prices
+- 🪙 Detailed view for individual coins
+- ⚡ Fast and lightweight UI
+- 🎨 Responsive design with Tailwind CSS
+- 🧭 Simple and intuitive navigation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
+- **Frontend:** React (Vite)
+- **Styling:** Tailwind CSS
+- **API:** CoinGecko API
+- **Language:** JavaScript (JSX)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📂 Project Structure
+src/
+├── components/
+│ └── CoinCard.jsx
+├── pages/
+│ ├── Home.jsx
+│ ├── CryptoPrices.jsx
+│ ├── CoinDetails.jsx
+│ └── HowToInvest.jsx
+├── services/
+│ └── api.js
+├── App.jsx
+└── main.jsx
+
+---
+
+📌 Use Case
+This project is intended for:
+- 💻 Practicing React fundamentals  
+- 🌐 Learning API integration  
+- 🏗️ Building real-world frontend projects  
+- 📈 Strengthening GitHub portfolio
+
+Future Enhancements
+- ⭐ Favorites / Watchlist: Save coins you want to track regularly.
+- 📊 Interactive Price Charts: View historical price trends with charts.  
+- 🌐 Multi-Currency Support: View prices in different fiat currencies (USD, INR, EUR).
+- 📱 Mobile Responsive Improvements: Smooth experience on all screen sizes.
+- 📝 Better Error Handling: User-friendly messages for API errors or network issues.
+
+🚧 Project Status
+This project is **ongoing** and not fully completed yet.  
+New features and improvements will be added over time.
+
+
