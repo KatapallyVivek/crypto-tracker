@@ -59,10 +59,12 @@ export default function CoinDetails() {
     <div className="min-h-screen bg-gray-950 dark:bg-white text-white dark:text-gray-900 px-6 py-10">
       <div className="max-w-4xl mx-auto bg-gray-900 dark:bg-gray-100 p-8 rounded-xl shadow-lg">
 
-        {/* Title */}
-        <h1 className="text-3xl font-bold mb-6 text-indigo-400 dark:text-indigo-600">
-          {coin.name} ({coin.symbol.toUpperCase()})
-        </h1>
+        {/* Title connects to CoinGecko */}
+        <h1 className="text-3xl font-bold mb-6 text-indigo-400 dark:text-indigo-600 cursor-pointer hover:underline"
+    onClick={() => window.open(`https://www.coingecko.com/en/coins/${coin.id}/usd`, "_blank")}>
+  {coin.name} ({coin.symbol.toUpperCase()})
+</h1>
+
 
         {/* Price Info */}
         <p className="mb-2">
