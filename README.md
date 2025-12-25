@@ -27,7 +27,9 @@ This project focuses on clean UI, performance, and practical frontend architectu
 ```md
 src/
 ├── components/
-│ └── CoinCard.jsx
+│ ├── CoinCard.jsx
+│ ├── Header.jsx
+│ ├── LiveMarketPreview.jsx
 ├── pages/
 │ ├── Home.jsx
 │ ├── CryptoPrices.jsx
