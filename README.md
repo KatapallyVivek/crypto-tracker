@@ -1,4 +1,4 @@
-🚀 Crypto Tracker
+## 🚀 Crypto Tracker
 
 A modern cryptocurrency tracking web application built with React that allows users to view real-time crypto prices and detailed coin information.
 
