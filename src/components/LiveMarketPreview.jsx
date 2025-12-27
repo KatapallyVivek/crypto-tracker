@@ -9,6 +9,8 @@ export default function LiveMarketPreview() {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    let intervalId;
+
     async function fetchCoins() {
       try {
         const data = await getCoins();
@@ -20,12 +22,16 @@ export default function LiveMarketPreview() {
       }
     }
 
-    fetchCoins();
+    fetchCoins(); 
+ 
+    intervalId = setInterval(fetchCoins, 30000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      const cardWidth = containerRef.current.children[0].offsetWidth + 24; // 24 = gap-x-6
+      const cardWidth = containerRef.current.children[0].offsetWidth + 24;
       containerRef.current.scrollBy({
         left: -2 * cardWidth,
         behavior: "smooth",
@@ -58,7 +64,6 @@ export default function LiveMarketPreview() {
       </h2>
 
       <div className="relative max-w-[1000px] mx-auto">
-        {/* Left Arrow */}
         <button
           onClick={scrollLeft}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-20
@@ -67,22 +72,14 @@ export default function LiveMarketPreview() {
           <ChevronLeftIcon className="h-6 w-6 text-indigo-400" />
         </button>
 
-        {/* Coins Row */}
-        <div
-          ref={containerRef}
-          className="flex space-x-6 overflow-x-hidden"
-        >
+        <div ref={containerRef} className="flex space-x-6 overflow-x-hidden">
           {coins.map((coin) => (
-            <div
-              key={coin.id}
-              className="flex-shrink-0 w-[calc(25%-1.5rem)]" // 25% = 4 cards, 1.5rem = gap
-            >
+            <div key={coin.id} className="flex-shrink-0 w-[calc(25%-1.5rem)]">
               <CoinCard coin={coin} />
             </div>
           ))}
         </div>
 
-        {/* Right Arrow */}
         <button
           onClick={scrollRight}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-20
