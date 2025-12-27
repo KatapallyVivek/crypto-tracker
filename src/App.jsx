@@ -12,7 +12,7 @@ function App() {
       <Header />
 
       {/* Padding so content doesn't hide under header */}
-      <div className="pt-28">
+       <div className="min-h-screen bg-black"> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/prices" element={<CryptoPrices />} />
