@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
+  const paths = ["/", "/prices", "/invest"];
+  const labels = ["Home", "Prices", "How to Invest"];
+
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50
+      className="sticky top-0 w-full z-50
       bg-gradient-to-r from-gray-950 via-black to-gray-900
       dark:from-gray-100 dark:via-white dark:to-gray-200
       border-b border-white/10 dark:border-black/10
@@ -16,7 +19,6 @@ export default function Header() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
         {/* Logo */}
         <NavLink
           to="/"
@@ -30,29 +32,26 @@ export default function Header() {
 
         {/* Nav Links */}
         <nav className="flex items-center gap-8 text-sm font-medium">
-          {["/", "/prices", "/invest"].map((path, i) => {
-            const labels = ["Home", "Prices", "How to Invest"];
-            return (
-              <NavLink
-                key={path}
-                to={path}
-                className={({ isActive }) =>
-                  `relative transition-all duration-300
-                  ${
-                    isActive
-                      ? "text-indigo-400"
-                      : "text-gray-300 dark:text-gray-700 hover:text-indigo-400"
-                  }`
-                }
-              >
-                {labels[i]}
-                {/* Active underline */}
-                <span className="absolute left-0 -bottom-1 w-full h-[2px]
-                  bg-gradient-to-r from-indigo-400 to-purple-500
-                  scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              </NavLink>
-            );
-          })}
+          {paths.map((path, i) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `group relative transition-all duration-300 ${
+                  isActive
+                    ? "text-indigo-400"
+                    : "text-gray-300 dark:text-gray-700 hover:text-indigo-400"
+                }`
+              }
+            >
+              {labels[i]}
+              {/* Active underline */}
+              <span className="absolute left-0 -bottom-1 w-full h-[2px]
+                bg-gradient-to-r from-indigo-400 to-purple-500
+                origin-left scale-x-0 transition-transform duration-300
+                group-hover:scale-x-100"></span>
+            </NavLink>
+          ))}
 
           {/* Profile (future) */}
           <button
