@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.coingecko.com/api/v3";
+
 export const getCoins = async (perPage = 10) => {
   try {
     const response = await axios.get(`${BASE_URL}/coins/markets`, {

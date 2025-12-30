@@ -14,7 +14,7 @@ export default function CryptoPrices() {
   useEffect(() => {
     async function fetchCoins() {
       try {
-        const data = await getCoins();
+        const data = await getCoins(visibleCount);
         setCoins(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error(err);
@@ -23,7 +23,7 @@ export default function CryptoPrices() {
       }
     }
     fetchCoins();
-  }, []);
+  }, [visibleCount]);
 
   if (loading) {
     return (
@@ -33,24 +33,22 @@ export default function CryptoPrices() {
     );
   }
 
-  // 🔍 Search always works (independent)
+  // Search filtering
   const searchedCoins = coins.filter(
     (coin) =>
       coin.name.toLowerCase().includes(search.toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  // 👇 Decide which coins to show
-  const coinsToShow = search
-    ? searchedCoins
-    : coins.slice(0, visibleCount);
+  // Show searched coins or all fetched coins
+  const coinsToShow = search ? searchedCoins : coins;
 
   const handleLoadMore = () => {
     if (loadClicks < 2) {
-      setVisibleCount((prev) => prev + 10); // 10 → 20 → 30
+      setVisibleCount((prev) => prev + 10);
       setLoadClicks((prev) => prev + 1);
     } else {
-      setLoadClicks(3); // third click just shows text
+      setLoadClicks(3);
     }
   };
 
@@ -78,18 +76,10 @@ export default function CryptoPrices() {
         ))}
       </div>
 
-      {/* Load More / Message */}
+      {/* Load More & Message */}
       {!search && (
         <div className="text-center mt-10">
-          {loadClicks < 2 ? (
-            <button
-              onClick={handleLoadMore}
-              className="px-6 py-2 bg-indigo-500 rounded-xl
-                         hover:bg-indigo-600 transition"
-            >
-              Load More
-            </button>
-          ) : loadClicks === 2 ? (
+          {loadClicks < 3 ? (
             <button
               onClick={handleLoadMore}
               className="px-6 py-2 bg-indigo-500 rounded-xl
@@ -99,8 +89,8 @@ export default function CryptoPrices() {
             </button>
           ) : (
             <p className="text-gray-400">
-              These are the most used crypto coins.  
-              Go to search bar and search for your coin.
+              These are the most used crypto coins.
+              Go to the search bar and search for your coin.
             </p>
           )}
         </div>
