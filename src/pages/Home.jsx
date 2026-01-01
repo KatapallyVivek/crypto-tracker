@@ -22,6 +22,7 @@ export default function Home() {
             </p>
 
             <div className="flex gap-4">
+              {/* Links to Prices */}
               <Link
                 to="/prices"
                 className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700
@@ -30,7 +31,7 @@ export default function Home() {
                 View Prices
               </Link>
 
-              {/* Fixed link to match route */}
+              {/* Links to HowToInvest */}
               <Link
                 to="/HowToInvest"
                 className="px-6 py-3 rounded-xl border border-gray-700
