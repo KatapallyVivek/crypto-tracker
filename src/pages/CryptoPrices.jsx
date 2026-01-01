@@ -8,12 +8,12 @@ export default function CryptoPrices() {
 
   const [visibleCount, setVisibleCount] = useState(10);
   const [loadClicks, setLoadClicks] = useState(0);
-
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function fetchCoins() {
       try {
+        setLoading(true);
         const data = await getCoins(visibleCount);
         setCoins(Array.isArray(data) ? data : []);
       } catch (err) {
@@ -22,7 +22,20 @@ export default function CryptoPrices() {
         setLoading(false);
       }
     }
+
     fetchCoins();
+
+    // Refetch coins when tab becomes active
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchCoins();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, [visibleCount]);
 
   if (loading) {
@@ -33,14 +46,13 @@ export default function CryptoPrices() {
     );
   }
 
-  // Search filtering
+  // Filter coins by search
   const searchedCoins = coins.filter(
     (coin) =>
       coin.name.toLowerCase().includes(search.toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Show searched coins or all fetched coins
   const coinsToShow = search ? searchedCoins : coins;
 
   const handleLoadMore = () => {
@@ -69,28 +81,26 @@ export default function CryptoPrices() {
         />
       </div>
 
-      {/* Coins */}
+      {/* Coins Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {coinsToShow.map((coin) => (
           <CoinCard key={coin.id} coin={coin} />
         ))}
       </div>
 
-      {/* Load More & Message */}
+      {/* Load More */}
       {!search && (
         <div className="text-center mt-10">
           {loadClicks < 3 ? (
             <button
               onClick={handleLoadMore}
-              className="px-6 py-2 bg-indigo-500 rounded-xl
-                         hover:bg-indigo-600 transition"
+              className="px-6 py-2 bg-indigo-500 rounded-xl hover:bg-indigo-600 transition"
             >
               Load More
             </button>
           ) : (
             <p className="text-gray-400">
-              These are the most used crypto coins.
-              Go to the search bar and search for your coin.
+              These are the most used crypto coins. Search for your coin above.
             </p>
           )}
         </div>
