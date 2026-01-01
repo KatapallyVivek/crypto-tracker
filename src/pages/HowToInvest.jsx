@@ -35,8 +35,7 @@ export default function HowToInvest() {
             <AcademicCapIcon className="h-10 w-10 text-indigo-400 mb-4" />
             <h2 className="text-xl font-semibold mb-3">Learn the Basics</h2>
             <p className="text-gray-400">
-              Understand what cryptocurrency is, how blockchain works,
-              and the risks involved before investing.
+              Understand what cryptocurrency is, and the risks involved before investing.
             </p>
           </div>
 
