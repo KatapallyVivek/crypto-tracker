@@ -1,8 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 export default function Header() {
-  const paths = ["/", "/prices", "/invest"];
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const paths = ["/home", "/prices", "/howtoinvest"];
   const labels = ["Home", "Prices", "How to Invest"];
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (err) {
+      console.error("Failed to logout:", err);
+    }
+  };
 
   return (
     <header
@@ -45,23 +58,25 @@ export default function Header() {
               }
             >
               {labels[i]}
-              {/* Active underline */}
-              <span className="absolute left-0 -bottom-1 w-full h-[2px]
-                bg-gradient-to-r from-indigo-400 to-purple-500
-                origin-left scale-x-0 transition-transform duration-300
-                group-hover:scale-x-100"></span>
+              <span
+                className="absolute left-0 -bottom-1 w-full h-[2px]
+                  bg-gradient-to-r from-indigo-400 to-purple-500
+                  origin-left scale-x-0 transition-transform duration-300
+                  group-hover:scale-x-100"
+              ></span>
             </NavLink>
           ))}
 
-          {/* Profile (future) */}
-          <button
-            className="ml-4 px-4 py-1.5 rounded-lg text-xs font-semibold
-            bg-gradient-to-r from-indigo-500 to-purple-600 text-white
-            shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.7)]
-            transition"
-          >
-            Profile
-          </button>
+          {/* Logout button */}
+          {currentUser && (
+            <button
+              onClick={handleLogout}
+              className="ml-4 px-4 py-1.5 rounded-lg text-xs font-semibold
+                bg-red-600 text-white shadow-lg hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          )}
         </nav>
       </div>
     </header>
