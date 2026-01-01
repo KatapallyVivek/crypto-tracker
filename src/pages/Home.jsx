@@ -32,7 +32,7 @@ export default function Home() {
 
               {/* Fixed link to match route */}
               <Link
-                to="/invest"
+                to="/HowToInvest"
                 className="px-6 py-3 rounded-xl border border-gray-700
                            hover:border-indigo-500 transition font-semibold"
               >
