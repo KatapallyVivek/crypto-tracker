@@ -6,29 +6,18 @@ export default function CoinDetails() {
   const { id } = useParams();
 
   const [coin, setCoin] = useState(null);
-  const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCoinData() {
       try {
+        setLoading(true);
+
         // Fetch coin details
         const coinResponse = await axios.get(
           `https://api.coingecko.com/api/v3/coins/${id}`
         );
         setCoin(coinResponse.data);
-
-        // Fetch price chart data (7 days)
-        const chartResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/${id}/market_chart`,
-          {
-            params: {
-              vs_currency: "usd",
-              days: 7,
-            },
-          }
-        );
-        setPrices(chartResponse.data.prices);
       } catch (error) {
         console.error("Error fetching coin data:", error);
       } finally {
@@ -59,29 +48,28 @@ export default function CoinDetails() {
     <div className="min-h-screen bg-gray-950 dark:bg-white text-white dark:text-gray-900 px-6 py-10">
       <div className="max-w-4xl mx-auto bg-gray-900 dark:bg-gray-100 p-8 rounded-xl shadow-lg">
 
-        {/* Title connects to CoinGecko */}
-        <h1 className="text-3xl font-bold mb-6 text-indigo-400 dark:text-indigo-600 cursor-pointer hover:underline"
-    onClick={() => window.open(`https://www.coingecko.com/en/coins/${coin.id}/usd`, "_blank")}>
-  {coin.name} ({coin.symbol.toUpperCase()})
-</h1>
-
+        {/* Title with safe external link */}
+        <a
+          href={`https://www.coingecko.com/en/coins/${coin.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-3xl font-bold mb-6 text-indigo-400 dark:text-indigo-600 hover:underline block"
+        >
+          {coin?.name} ({coin?.symbol?.toUpperCase()})
+        </a>
 
         {/* Price Info */}
         <p className="mb-2">
-          Current Price: $
-          {coin.market_data.current_price.usd.toLocaleString()}
+          Current Price: ${coin?.market_data?.current_price?.usd?.toLocaleString() || "N/A"}
         </p>
         <p className="mb-2">
-          Market Cap: $
-          {coin.market_data.market_cap.usd.toLocaleString()}
+          Market Cap: ${coin?.market_data?.market_cap?.usd?.toLocaleString() || "N/A"}
         </p>
         <p className="mb-2">
-          24h High: $
-          {coin.market_data.high_24h.usd.toLocaleString()}
+          24h High: ${coin?.market_data?.high_24h?.usd?.toLocaleString() || "N/A"}
         </p>
         <p className="mb-6">
-          24h Low: $
-          {coin.market_data.low_24h.usd.toLocaleString()}
+          24h Low: ${coin?.market_data?.low_24h?.usd?.toLocaleString() || "N/A"}
         </p>
 
         {/* Key Info */}
@@ -89,36 +77,28 @@ export default function CoinDetails() {
           <div className="p-4 rounded-lg bg-gray-800 dark:bg-gray-200">
             <p className="text-sm text-gray-400 dark:text-gray-600">Rank</p>
             <p className="text-lg font-semibold">
-              #{coin.market_cap_rank}
+              #{coin?.market_cap_rank || "N/A"}
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-gray-800 dark:bg-gray-200">
-            <p className="text-sm text-gray-400 dark:text-gray-600">
-              Circulating Supply
-            </p>
+            <p className="text-sm text-gray-400 dark:text-gray-600">Circulating Supply</p>
             <p className="text-lg font-semibold">
-              {coin.market_data.circulating_supply.toLocaleString()}
+              {coin?.market_data?.circulating_supply?.toLocaleString() || "N/A"}
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-gray-800 dark:bg-gray-200">
-            <p className="text-sm text-gray-400 dark:text-gray-600">
-              Total Supply
-            </p>
+            <p className="text-sm text-gray-400 dark:text-gray-600">Total Supply</p>
             <p className="text-lg font-semibold">
-              {coin.market_data.total_supply
-                ? coin.market_data.total_supply.toLocaleString()
-                : "N/A"}
+              {coin?.market_data?.total_supply?.toLocaleString() || "N/A"}
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-gray-800 dark:bg-gray-200">
-            <p className="text-sm text-gray-400 dark:text-gray-600">
-              All Time High
-            </p>
+            <p className="text-sm text-gray-400 dark:text-gray-600">All Time High</p>
             <p className="text-lg font-semibold">
-              ${coin.market_data.ath.usd.toLocaleString()}
+              ${coin?.market_data?.ath?.usd?.toLocaleString() || "N/A"}
             </p>
           </div>
         </div>
