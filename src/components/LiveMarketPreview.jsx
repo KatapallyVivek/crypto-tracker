@@ -13,6 +13,7 @@ export default function LiveMarketPreview() {
 
     async function fetchCoins() {
       try {
+        setLoading(true);
         const data = await getCoins();
         setCoins(Array.isArray(data) ? data : []);
       } catch (error) {
@@ -22,11 +23,24 @@ export default function LiveMarketPreview() {
       }
     }
 
-    fetchCoins(); 
- 
+    fetchCoins();
+
+    // Refetch when tab becomes active
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchCoins();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Auto-refresh every 30 seconds
     intervalId = setInterval(fetchCoins, 30000);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, []);
 
   const scrollLeft = () => {
