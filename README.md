@@ -1,6 +1,6 @@
 ## 🚀 Crypto Tracker
 
-A modern cryptocurrency tracking web application built with React that allows users to view real-time crypto prices and detailed coin information.
+A modern cryptocurrency tracking web application built with React, that allows users to view ***real-time crypto prices*** and detailed coin information.
 
 This project focuses on clean UI, performance, and practical frontend architecture.
 
@@ -18,23 +18,32 @@ This project focuses on clean UI, performance, and practical frontend architectu
 ## 🛠 Tech Stack
 - **Frontend:** React (Vite)
 - **Styling:** Tailwind CSS
-- **API:** CoinGecko API
+- **API Integration:** CoinGecko API
 - **Language:** JavaScript (JSX)
+- **Authentication:** Firebase Authentication
+- **Version Control:** Git & Github
+- **Deployment:** Vercel
 
 ---
 
 ## 📂 Project Structure
 ```md
 src/
+├── auth/
+│ └── AuthContext.jsx
 ├── components/
 │ ├── CoinCard.jsx
 │ ├── Header.jsx
 │ ├── LiveMarketPreview.jsx
+│ └── ProtectedRoute.jsx
 ├── pages/
 │ ├── Home.jsx
 │ ├── CryptoPrices.jsx
 │ ├── CoinDetails.jsx
-│ └── HowToInvest.jsx
+│ ├── HowToInvest.jsx
+│ ├── Landing.jsx
+│ ├── Login.jsx
+│ └── signup.jsx
 ├── services/
 │ └── api.js
 ├── App.jsx
@@ -43,10 +52,10 @@ src/
 ---
 ## 📌 Use Case
 This project is intended for:
-- 💻 Practicing React fundamentals  
+- 💻 ***Practicing*** React fundamentals  
 - 🌐 Learning API integration  
 - 🏗️ Building real-world frontend projects  
-- 📈 Strengthening GitHub portfolio
+- 📈 ***Strengthening*** GitHub portfolio
 
 ## 🚀Future Enhancements
 - ⭐ Favorites / Watchlist: Save coins you want to track regularly.
