@@ -193,7 +193,7 @@ export default function HowToInvest() {
             </Link>
 
             <Link
-              to="/"
+              to="/home"
               className="px-8 py-3 rounded-xl border border-gray-500
                          hover:border-indigo-400 transition font-semibold">
               Go to Home

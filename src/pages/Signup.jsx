@@ -21,11 +21,18 @@ export default function Signup() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // Signup successful, redirect to login page
-      navigate("/login");
+      navigate("/home");
     } catch (err) {
       console.error(err);
-      setError(err.message || "Signup failed");
+      if (err.code === "auth/email-already-in-use") {
+        setError("Email is already registered");
+      } else if (err.code === "auth/invalid-email") {
+        setError("Invalid email address");
+      } else if (err.code === "auth/weak-password") {
+        setError("Password should be at least 6 characters");
+      } else {
+        setError(err.message || "Signup failed");
+      }
     }
   };
 
@@ -76,10 +83,7 @@ export default function Signup() {
 
         <p className="mt-4 text-gray-400 text-center">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-indigo-400 hover:underline"
-          >
+          <Link to="/login" className="text-indigo-400 hover:underline">
             Login
           </Link>
         </p>

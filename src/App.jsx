@@ -1,4 +1,3 @@
-// src/App.jsx
 import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Signup from "./pages/Signup";
@@ -13,11 +12,6 @@ import Header from "./components/Header";
 export default function App() {
   return (
     <>
-      {/* Show Header only when logged in */}
-      <ProtectedRoute>
-        <Header />
-      </ProtectedRoute>
-
       <Routes>
         {/* Public pages */}
         <Route path="/" element={<Landing />} />
@@ -26,10 +20,42 @@ export default function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Protected pages */}
-        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/prices" element={<ProtectedRoute><CryptoPrices /></ProtectedRoute>} />
-        <Route path="/coin/:id" element={<ProtectedRoute><CoinDetails /></ProtectedRoute>} />
-        <Route path="/howtoinvest" element={<ProtectedRoute><HowToInvest /></ProtectedRoute>} />  
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Header /> {/* Header visible only after login */}
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/prices"
+          element={
+            <ProtectedRoute>
+              <Header />
+              <CryptoPrices />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/coin/:id"
+          element={
+            <ProtectedRoute>
+              <Header />
+              <CoinDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/howtoinvest"
+          element={
+            <ProtectedRoute>
+              <Header />
+              <HowToInvest />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Fallback */}
         <Route path="*" element={<Landing />} />

@@ -33,7 +33,7 @@ export default function Header() {
 
       <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <NavLink
+     <NavLink
           to="/"
           className="text-2xl font-extrabold tracking-wide
           text-transparent bg-clip-text

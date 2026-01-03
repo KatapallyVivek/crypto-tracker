@@ -1,19 +1,28 @@
 import { Link } from "react-router-dom";
 import LiveMarketPreview from "../components/LiveMarketPreview";
+import bgHero from "../assets/background_crypto.jpg"; 
 
 export default function Home() {
   return (
     <div className="bg-gray-950 text-white">
+      {/* HERO */}
+      <section
+        className="min-h-[90vh] flex items-center px-6 md:px-12"
+        style={{
+          backgroundImage: `url(${bgHero})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
 
-      {/* SECTION 1 : HERO */}
-      <section className="min-h-[90vh] flex items-center px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-
-          {/* Left Content */}
+        <div className="grid md:grid-cols-2 gap-12 items-center w-full relative z-10">
+          
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-              Invest Smart. <br />
-              <span className="text-indigo-400">Grow with Crypto.</span>
+              Invest Smart<br />
+              <span className="text-indigo-400">Grow with Crypto</span>
             </h1>
 
             <p className="text-gray-400 text-lg mb-8 max-w-xl">
@@ -41,16 +50,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
-          {/* Right Visual */}
-          <div className="hidden md:flex justify-center">
-            <div className="grid grid-cols-2 gap-6">
-              <div className="h-32 w-32 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 opacity-80" />
-              <div className="h-32 w-32 rounded-2xl bg-gradient-to-br from-pink-500 to-red-500 opacity-80" />
-              <div className="h-32 w-32 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 opacity-80" />
-              <div className="h-32 w-32 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 opacity-80" />
-            </div>
+          <div className="hidden md:block">
           </div>
+
         </div>
       </section>
 
@@ -87,10 +89,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3 : LIVE MARKET PREVIEW */}
+      {/* LIVE MARKET PREVIEW */}
       <LiveMarketPreview />
 
-      {/* SECTION 4 : CTA / FUTURE */}
+      {/* FUTURE */}
       <section className="px-6 md:px-12 py-24 text-center bg-gray-950">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Start Tracking Smarter Today
@@ -102,6 +104,75 @@ export default function Home() {
         </p>
 
       </section>
+      {/* FOOTER */}
+<footer className="bg-gray-950 border-t border-white/10 text-gray-400">
+  <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 grid gap-10 md:grid-cols-3">
+
+    {/* Brand / About */}
+    <div>
+      <h3 className="text-2xl font-bold text-white mb-4">
+        Crypto<span className="text-indigo-400">Tracker</span>
+      </h3>
+      <p className="leading-relaxed">
+        Track real-time crypto prices, understand market trends,
+        and make smarter investment decisions with confidence.
+      </p>
+    </div>
+
+    {/* Features */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Features</h4>
+      <ul className="space-y-3">
+        <li className="hover:text-indigo-400 transition">
+          Real-time Market Prices
+        </li>
+        <li className="hover:text-indigo-400 transition">
+          Beginner Friendly UI
+        </li>
+        <li className="hover:text-indigo-400 transition">
+          Market Trend Analysis
+        </li>
+        <li className="hover:text-indigo-400 transition">
+          Smart Investment Insights
+        </li>
+      </ul>
+    </div>
+
+    {/* Quick Links */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+      <ul className="space-y-3">
+        <li>
+          <Link to="/prices" className="hover:text-indigo-400 transition">
+            View Prices
+          </Link>
+        </li>
+        <li>
+          <Link to="/HowToInvest" className="hover:text-indigo-400 transition">
+            How to Invest
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" className="hover:text-indigo-400 transition">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link to="/signup" className="hover:text-indigo-400 transition">
+            Sign Up
+          </Link>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  {/* Bottom Bar */}
+  <div className="border-t border-white/10 py-6 text-center text-sm text-gray-500">
+    © {new Date().getFullYear()} CryptoTracker. All rights reserved.
+  </div>
+</footer>
+
     </div>
   );
 }

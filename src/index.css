@@ -8,3 +8,15 @@ body,
   min-height: 100%;
   margin: 0;
 }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(-45deg, #c93aae, #080541, #780440, #426dfa);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
