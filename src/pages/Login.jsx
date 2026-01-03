@@ -32,8 +32,6 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-animated-gradient px-4">
 
       <div className="w-full max-w-md p-10 rounded-3xl bg-gray-900/80 backdrop-blur-lg shadow-2xl transform transition-transform duration-500 hover:scale-105">
-
-        {/* Optional bouncing crypto icon */}
       
         <h1 className="text-3xl font-bold text-indigo-400 mb-6 text-center">
           Login
